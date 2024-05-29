@@ -1,4 +1,4 @@
-# Interface in Go
+# Interfaces in Go
 
 This document provides an overview of interfaces in Go, using a simple example with two custom types.
 
