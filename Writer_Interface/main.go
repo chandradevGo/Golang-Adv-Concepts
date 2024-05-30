@@ -1,25 +1,27 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
+	"io"
 	"log"
 	"os"
 )
 
-/*
-***Example writer interface type
+// this is to write to buffer
 type person struct {
 	Name string
 }
 
 func (p person) writeOut(w io.Writer) error {
-	_,err := w.Write([]byte(p.Name))
+	_, err := w.Write([]byte(p.Name))
 	return err
 }
-*/
 
 // using below method we can create two text files and write some data to it.
 // capture any erros encountered
 func main() {
+	// creat and write to files f1 & f2
 	f1, err := os.Create("hello.text")
 	if err != nil {
 		log.Fatalf("error %s", err)
@@ -45,4 +47,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("error %s", err)
 	}
+
+	// writes to buffer and prints buffer from in-memory
+	p := person{
+		Name: "James",
+	}
+
+	var b bytes.Buffer
+	p.writeOut(&b)
+	fmt.Println(b.String())
 }

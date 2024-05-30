@@ -19,5 +19,4 @@ func main() {
 
 	b.WriteString("Happy Happy")
 	fmt.Println(b.String())
-
 }
