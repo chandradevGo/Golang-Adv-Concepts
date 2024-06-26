@@ -2,14 +2,21 @@ package main
 
 import "fmt"
 
-func main() {
+func processChannel() []int {
 	c := make(chan int, 2)
 
 	c <- 42
 	c <- 43
-	// below one will be deadlock as we only init two buffer channel
-	c <- 44
+	// The following line would cause a deadlock if uncommented
+	// c <- 44
 
-	fmt.Println(<-c)
-	fmt.Println(<-c)
+	result := []int{<-c, <-c}
+	return result
+}
+
+func main() {
+	results := processChannel()
+	for _, result := range results {
+		fmt.Println(result)
+	}
 }
